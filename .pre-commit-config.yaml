@@ -1,8 +1,9 @@
-# .pre-commit-config.yaml
-default_stages: [commit]
+# DO NOT CHANGE THIS FILE DIRECTLY
+# Source: https://github.com/schubergphilis/mcaf-github-workflows
+default_stages: [pre-commit]
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: check-json
       - id: check-merge-conflict
@@ -18,14 +19,14 @@ repos:
           - --allow-missing-credentials
       - id: detect-private-key
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.88.4
+    rev: v1.97.4
     hooks:
       - id: terraform_fmt
       - id: terraform_tflint
       - id: terraform_docs
       - id: terraform_validate
   - repo: https://github.com/bridgecrewio/checkov.git
-    rev: 3.2.60
+    rev: 3.2.381
     hooks:
       - id: checkov
         verbose: false

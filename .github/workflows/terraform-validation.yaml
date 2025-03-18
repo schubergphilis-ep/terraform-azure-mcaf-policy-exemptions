@@ -1,3 +1,6 @@
+# DO NOT CHANGE THIS FILE DIRECTLY
+# Source: https://github.com/schubergphilis/mcaf-github-workflows
+
 name: "terraform"
 
 on:
@@ -19,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@v3
 
       - name: Setup Terraform Linters
         uses: terraform-linters/setup-tflint@v4
@@ -60,7 +63,7 @@ jobs:
           terraform init
           terraform test
 
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         if: github.event_name == 'pull_request' || always()
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -114,7 +117,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Render terraform docs inside the README.md and push changes back to PR branch
-        uses: terraform-docs/gh-actions@v1.1.0
+        uses: terraform-docs/gh-actions@v1.3.0
         with:
           args: --sort-by required
           git-commit-message: "docs(readme): update module usage"
@@ -124,24 +127,28 @@ jobs:
           working-dir: .
         continue-on-error: true # added this to prevent a PR from a remote fork failing the workflow
 
-  tfsec:
+  # If the recursive flag is set to true, the action will not update the main README.md file. 
+  # Therefore we need to run the action twice, once for the root module and once for the modules directory
+  docs-modules:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Terraform security scan
-        uses: aquasecurity/tfsec-action@v1.0.3
         with:
-          github_token: ${{ github.token }}
-          soft_fail: false
-          tfsec_args: --concise-output --force-all-dirs
+          ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: Terraform pr commenter
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      - name: Render terraform docs inside the README.md and push changes back to PR branch
+        uses: terraform-docs/gh-actions@v1.3.0
         with:
-          github_token: ${{ github.token }}
-          tfsec_args: --concise-output --force-all-dirs
+          args: --sort-by required
+          git-commit-message: "docs(readme): update module usage"
+          git-push: true
+          output-file: README.md
+          output-method: inject
+          recursive-path: modules
+          recursive: true
+          working-dir: .
+        continue-on-error: true # added this to prevent a PR from a remote fork failing the workflow
 
   checkov:
     runs-on: ubuntu-latest
