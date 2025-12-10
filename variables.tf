@@ -6,7 +6,7 @@ variable "exemptions_for_resource_groups" {
     exemption_name                  = string
     policy_assignment_id            = string
     reason                          = string
-    exemption_category              = string
+    exemption_category              = optional(string, "waiver")
     expires_on                      = optional(string, null)
     policy_definition_reference_ids = optional(list(string), [])
   }))
@@ -20,7 +20,7 @@ variable "exemptions_for_subscriptions" {
     exemption_name                  = string
     policy_assignment_id            = string
     reason                          = string
-    exemption_category              = string
+    exemption_category              = optional(string, "waiver")
     expires_on                      = optional(string, null)
     policy_definition_reference_ids = optional(list(string), [])
   }))
@@ -34,7 +34,7 @@ variable "exemptions_for_each_subscription" {
     exemption_name                  = string
     policy_assignment_id_suffix     = string
     reason                          = string
-    exemption_category              = string
+    exemption_category              = optional(string, "waiver")
     expires_on                      = optional(string, null)
     policy_definition_reference_ids = optional(list(string), [])
   }))
@@ -48,7 +48,7 @@ variable "exemptions_for_management_groups" {
     exemption_name                  = string
     policy_assignment_id            = string
     reason                          = string
-    exemption_category              = string
+    exemption_category              = optional(string, "waiver")
     expires_on                      = optional(string, null)
     policy_definition_reference_ids = optional(list(string), [])
   }))
@@ -62,7 +62,7 @@ variable "exemptions_for_resources" {
     exemption_name                  = string
     policy_assignment_id            = string
     reason                          = string
-    exemption_category              = string
+    exemption_category              = optional(string, "waiver")
     expires_on                      = optional(string, null)
     policy_definition_reference_ids = optional(list(string), [])
   }))
