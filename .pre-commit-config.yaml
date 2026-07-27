@@ -1,9 +1,9 @@
-# DO NOT CHANGE THIS FILE DIRECTLY
-# Source: https://github.com/schubergphilis/mcaf-github-workflows
+# WARNING: This file is managed automatically and may be overwritten at any time.
+
 default_stages: [pre-commit]
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-json
       - id: check-merge-conflict
@@ -14,19 +14,20 @@ repos:
       - id: pretty-format-json
         args:
           - --autofix
+        exclude: (^|.*/)\.?(?:release-please-(?:manifest|config))\.json$
       - id: detect-aws-credentials
         args:
           - --allow-missing-credentials
       - id: detect-private-key
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.98.1
+    rev: v1.108.0
     hooks:
       - id: terraform_fmt
       - id: terraform_tflint
       - id: terraform_docs
       - id: terraform_validate
-  - repo: https://github.com/bridgecrewio/checkov.git
-    rev: 3.2.388
+  - repo: https://github.com/bridgecrewio/checkov
+    rev: 3.3.8
     hooks:
       - id: checkov
         verbose: false

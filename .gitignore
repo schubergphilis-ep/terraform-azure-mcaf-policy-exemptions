@@ -1,25 +1,7 @@
-# This file is managed by mcaf-github-workflows
-
-# CheckOv pre-commit external modules path
-**/.external_modules/*
+# WARNING: This file is managed automatically and may be overwritten at any time.
 
 # Local .terraform directories
 **/.terraform/*
-
-# Local Lambda function package directories
-**/builds/*
-
-# Terraform locks
-# This is a module, not a stand-alone deployment
-.terraform.lock.hcl
-
-# Ignore CLI configuration files
-.terraformrc
-terraform.rc
-
-# Crash log files
-crash.log
-crash.*.log
 
 # .tfstate files
 *.tfstate
@@ -30,9 +12,30 @@ crash.*.log
 *.tfvars
 *.tfvars.json
 
-# override files
+# Crash log files
+crash.log
+crash.*.log
+
+# Override files
 # These should not be part of version control as they are usually used to override resources locally
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+
+# Ignore transient lock info files created by terraform apply
+.terraform.tfstate.lock.info
+
+# Terraform locks
+# This is a module, not a stand-alone deployment
+.terraform.lock.hcl
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# CheckOv pre-commit external modules path
+**/.external_modules/*
+
+# Local Lambda function package directories
+**/builds/*

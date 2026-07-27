@@ -1,39 +1,144 @@
+<!-- WARNING: This file is managed automatically and may be overwritten at any time. -->
+
 # Contributing
 
-## Coding Guidelines
+Thank you for considering contributing! This document outlines the standards and processes we follow to ensure consistent, high-quality contributions.
 
-- The terraform language has some [style conventions](https://developer.hashicorp.com/terraform/language/syntax/style) which must be followed for consistency between files and modules written by different teams.
+---
 
-## Opening a pull request
+## 📐 Coding Guidelines
 
-- We require pull request titles to follow the [conventional commits specification](https://www.conventionalcommits.org/en/v1.0.0/)
+We follow the [Terraform language style conventions](https://developer.hashicorp.com/terraform/language/syntax/style). These ensure consistency across modules maintained by different teams.
 
-- Labels are automatically added to your PR based on certain keywords in the `title`, `body`, and `branch` . You are able to manually add or remove labels from your PR, the following labels are allowed: `breaking`, `enhancement`, `feature`, `bug`, `fix`, `security`, `documentation`.
+Please:
 
-## Release flow
+- Format code using `terraform fmt`
+- Use meaningful and consistent naming
+- Write short, clear variable and output descriptions, as these will appear in module `README.md` files
+- Prefer explicit types and variable defaults
 
-1. Every time a PR is merged, a draft release note is created or updated to add an entry for this PR. The release version is automatically incremented based on the labels specified.
+---
 
-2. When you are ready to publish the release, you can use the drafted release note to do so. `MCAF Contributors` are able to publish releases. If you are an `MCAF Contributor` and want to publish a drafted release:
-    - Browse to the release page
-    - Edit the release you want to publish (click on the pencil)
-    - Click `Update release` (the green button at the bottom of the page)
+## ✅ Opening a Pull Request
 
-If a PR should not be added to the release notes and changelog, add the label `no-changelog` to your PR.
+- **Commit style**: Use the [Conventional Commits specification](https://www.conventionalcommits.org/en/v1.0.0/). We only support the following types for release automation:
 
-## Local Development
+  - `feat`: for new features
+  - `fix`: for bug fixes
+  - `chore`: for non-functional changes (e.g., CI, docs, refactoring)
 
-To ease local development, [pre-commit](https://pre-commit.com/) configuration has been added to the repository. Pre-commit is useful for identifying simple issues before creating a PR:
+> [!NOTE]
+> To indicate a **breaking change**, append `!` to the type:
+> Example: `feat!: remove deprecated module input`
 
-To use it, follow these steps:
+- **Small PRs**: Smaller, focused pull requests are easier to review and merge. Aim to keep PRs limited in scope.
 
-1. Installation:
-    - Using Brew: `brew install tflint`
-    - Using Python: `pip3 install pre-commit --upgrade`
-    - Using Conda: `conda install -c conda-forge pre-commit`
+---
 
-2. Run the pre-commit hooks against all the files (the first time run might take a few minutes):
-`pre-commit run -a`
+## 🌱 Branch Naming
 
-3. (optional) Install the pre-commit hooks to run before each commit:
-`pre-commit install`
+Use short, descriptive branch names using hyphens:
+
+- `fix-bug-name`
+- `feat-new-feature`
+- `chore-update-docs`
+
+Include the issue number if applicable:
+`feat-123-add-s3-encryption`
+
+---
+
+## 🚀 Release Process
+
+This repository uses [release-please](https://github.com/googleapis/release-please) to automate releases.
+
+### How It Works
+
+1. When a pull request is merged into the default branch:
+
+   - release-please **does not immediately publish a release**.
+   - Instead, it creates or updates a **release PR** with:
+     - A changelog entry (based on commit messages)
+     - A proposed version bump (based on the type of commit)
+
+2. The release PR is kept up to date as more feature or bug fix PRs are merged.
+
+3. When the release PR is **merged**, a GitHub release is published automatically.
+
+> [!NOTE]
+> Only `feat` and `fix` commits affect the release.
+> Commits with `!` trigger a **major version** bump, such as `feat!` or `fix!`.
+
+### Excluding a PR from Release Notes
+
+If your change should not appear in the changelog (e.g., formatting, refactoring), use `chore` as the conventional commit type.
+
+---
+
+## 📘 Module Documentation
+
+Each Terraform module must include a `README.md` file that:
+
+- Clearly describes the **purpose and scope** of the module
+- Explains any assumptions, constraints, or dependencies
+- Optionally includes links to examples under the `examples/` directory
+
+Usage instructions (including inputs and outputs) are automatically generated using [terraform-docs](https://terraform-docs.io/).
+
+Do not manually edit those sections—run terraform-docs as part of the pre-commit hook or CI pipeline to keep them consistent.
+
+This helps ensure module consumers can quickly understand what the module does and how to use it.
+
+---
+
+## 🧪 Testing Guidelines
+
+We encourage writing tests for all modules and logic using:
+
+- `terraform validate` to ensure config correctness
+- `tflint` to enforce style and linting
+- (Optional) [writing terraform test](https://developer.hashicorp.com/terraform/tutorials/configuration-language/test)
+
+Test your examples whenever possible to ensure modules can be applied successfully with default inputs.
+
+---
+
+## 🧾 Examples
+
+Each module should include usage examples in the `examples/` directory:
+
+- Include a `examples/basic` example showing the most common or minimal use case.
+- Additional examples should go in topic-specific directories:
+  - `examples/with_logging`
+  - `examples/multi_region`
+  - `examples/for_each_usage`
+
+These examples serve as both validation and guidance for future users.
+
+Keep examples up to date as module interfaces change.
+
+---
+
+## 🧰 Local Development
+
+This repo uses [pre-commit](https://pre-commit.com/) to automatically check your code before committing. It helps catch common issues early.
+
+### Setup
+
+1. Install required tools:
+   `brew install tflint`
+   `pip3 install pre-commit --upgrade`
+   or using Conda:
+   `conda install -c conda-forge pre-commit`
+
+2. Run checks against all files:
+   `pre-commit run -a`
+
+3. (Optional) Install hooks to run automatically before each commit:
+   `pre-commit install`
+
+---
+
+## 🙌 Thank You
+
+Whether you're fixing a typo, refactoring code, or proposing a feature -- your contribution is appreciated. If you have questions, feel free to open an issue.
