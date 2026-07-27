@@ -6,29 +6,33 @@ labels: bug
 assignees: ""
 ---
 
-## 💡 Problem description
+**💡 Problem description**
 
 Enter summary of the problem here.
 
-## ☹️ Current Behavior
+**☹️ Current Behaviour**
 
-Describe what is happening. More detail is better. When code is pasted, use correct formatting.
+Describe what is happening. More detail is better.
+When code is pasted, wrap it in backticks to preserve formatting.
 
-## 😀 Expected Behavior
+**😀 Expected Behaviour**
 
-Enter any other details such as examples, links to requirements, etc. Any criteria that might help with fixing the problem. Attach screenshots if possible. More detail is better.
+Enter any other details such as examples, links to requirements, etc.
+Any criteria that might help with fixing the problem.
+Attach screenshots if possible.
+More detail is better.
 
-## ❓ Steps to Reproduce
+**❓Steps to Reproduce**
 
 Enter detailed steps to reproduce here. More detail is better.
 
-## 🚧 Workaround
+**🚧 Workaround**
 
 If there is a way to work around the problem, place that information here.
 
-## 💻 Environment
+**💻 Environment**
 
 Anything that will help triage the bug will help. For example:
 
-- Terraform CLI version
+- Terraform version
 - Module version

@@ -1,0 +1,30 @@
+{
+  "packages": {
+    ".": {
+      "changelog-path": "CHANGELOG.md",
+      "changelog-sections": [
+        {
+          "type": "feat",
+          "section": "🚀 Features",
+          "hidden": false
+        },
+        {
+          "type": "fix",
+          "section": "🐛 Fixes",
+          "hidden": false
+        },
+        {
+          "type": "refactor",
+          "section": "🧼 Refactoring",
+          "hidden": false
+        }
+      ],
+      "release-type": "terraform-module",
+      "bump-minor-pre-major": false,
+      "bump-patch-for-minor-pre-major": false,
+      "draft": false,
+      "prerelease": false
+    }
+  },
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
+}
