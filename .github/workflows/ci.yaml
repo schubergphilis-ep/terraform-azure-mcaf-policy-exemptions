@@ -10,14 +10,14 @@ permissions: {}
 
 jobs:
   Commit:
-    uses: schubergphilis-ep/github-terraform-workflows/.github/workflows/commit.yaml@4dc535b5b0d6a4466cd6a43b87b802dd8591c0e6 # v2.1.3
+    uses: schubergphilis-ep/github-terraform-workflows/.github/workflows/commit.yaml@4dc5e4c99aea53bb4b5db42bc79ddc28d41b03d9 # v2.3.0
     permissions:
       contents: read
       pull-requests: write
     secrets: inherit
 
   Terraform:
-    uses: schubergphilis-ep/github-terraform-workflows/.github/workflows/module-ci.yaml@4dc535b5b0d6a4466cd6a43b87b802dd8591c0e6 # v2.1.3
+    uses: schubergphilis-ep/github-terraform-workflows/.github/workflows/module-ci.yaml@4dc5e4c99aea53bb4b5db42bc79ddc28d41b03d9 # v2.3.0
     permissions:
       contents: write
       security-events: write
