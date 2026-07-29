@@ -10,7 +10,7 @@ permissions: {}
 
 jobs:
   Release:
-    uses: schubergphilis-ep/github-terraform-workflows/.github/workflows/module-release.yaml@4dc5e4c99aea53bb4b5db42bc79ddc28d41b03d9 # v2.3.0
+    uses: schubergphilis-ep/github-terraform-workflows/.github/workflows/module-release.yaml@a962b16003d32a7f80fa2f50280acd750e8fdcc3 # v2.3.1
     permissions:
       contents: write
       issues: write
